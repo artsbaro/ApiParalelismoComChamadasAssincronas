@@ -85,6 +85,7 @@ Nesse contexto, para fins de simulaçao de um cenário lento na aplicação, col
         }
 ```        
 
+```
 Resultados:
 
 Sem paralelismo
@@ -96,7 +97,7 @@ Com paralelismo
 Chamada 1 - 528 ms
 Chamada 2 - 556 ms
 Chamada 3 - 534 ms
-
+```
 Para testar as chamadas utilizei o Postman.
 No Visual Studio, ou VS Code, reomva o comentário conforme o cenário de teste que deseja e veja os resultados.
 
