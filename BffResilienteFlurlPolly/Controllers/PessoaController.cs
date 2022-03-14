@@ -22,11 +22,13 @@ namespace BffApiParalelismoComChamadasAssincronas.Controllers
         }
 
         [HttpGet(Name = "Pessoa/{id}")]
-        [ProducesResponseType(typeof(IEnumerable<Pessoa>), StatusCodes.Status200OK)]
-        public async Task<ActionResult<IEnumerable<Pessoa>>> GetPessoaAsync(int id)
+        [ProducesResponseType(typeof(Pessoa), StatusCodes.Status200OK)]
+        public async Task<ActionResult<Pessoa>> GetPessoaAsync(int id)
         {
-            var pessoas = await _service.GetPessoaAsync(id);
-            return Ok(pessoas);
+            //var pessoa = await _service.GetPessoaAsync(id);
+            var pessoa = await _service.GetPessoaComParalelismoAsync(id);
+
+            return Ok(pessoa);
         }
     }
 }

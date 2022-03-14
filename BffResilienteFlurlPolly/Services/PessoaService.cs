@@ -1,5 +1,4 @@
-﻿
-using ApiParalelismoComChamadasAssincronas.Core.Models;
+﻿using ApiParalelismoComChamadasAssincronas.Core.Models;
 using BffApiParalelismoComChamadasAssincronas.Services.DataService;
 
 namespace BffApiParalelismoComChamadasAssincronas.Services
@@ -26,22 +25,24 @@ namespace BffApiParalelismoComChamadasAssincronas.Services
             return pessoa;
         }
 
-        //public async Task<Pessoa> GetPessoaAsync(int id)
-        //{
-        //    Pessoa pessoa = new Pessoa();
-        //    IEnumerable<Endereco> enderecos = Enumerable.Empty<Endereco>();
+        // Com paralelismo
 
-        //    var tasks = new Task[] {
+        public async Task<Pessoa> GetPessoaComParalelismoAsync(int id)
+        {
+            Pessoa pessoa = new Pessoa();
+            IEnumerable<Endereco> enderecos = Enumerable.Empty<Endereco>();
 
-        //       Task.Run( async () => pessoa = await _pessoaDataService.GetPessoaAsync(id)),
-        //       Task.Run( async () => enderecos = await _enderecoDataService.GetEnderecosAsync(id))
-        //    };
-        //    Task.WaitAll(tasks);
+            var tasks = new Task[] {
 
-        //    if (pessoa.Id > 0)
-        //        pessoa.Enderecos = enderecos;
+               Task.Run( async () => pessoa = await _pessoaDataService.GetPessoaAsync(id)),
+               Task.Run( async () => enderecos = await _enderecoDataService.GetEnderecosAsync(id))
+            };
+            Task.WaitAll(tasks);
 
-        //    return pessoa;
-        //}
+            if (pessoa.Id > 0)
+                pessoa.Enderecos = enderecos;
+
+            return pessoa;
+        }
     }
 }
