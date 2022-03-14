@@ -38,13 +38,14 @@ Utilizando paralelismo em suas chamadas a um servico que consome uma http
 ```
 
 A api que esse projeto consome é uma bem simples que possui dois EndPoints.
-    - 1 para consulta de pessoa
-    - 1 para consulta de endereços da pessoa pelo campo IdPessoa
+##### 1 para consulta de pessoa
+##### 1 para consulta de endereços da pessoa pelo campo IdPessoa
 
-O ideal seria termos dois projetos, 1 para cada api(Enderecos e Pessoa), já que se a mesma API irá retornar a pessoa e ela mesma pode retornar os endereços, seria melhor ela já retornar a pessoa com os endereços preenchidos. Porém, esse não é o objetivo da Solução apresentada. O objetivo é mostrar como a utilização de paralelismo pode trazer grande ganho de performace para sua aplicação.
+O ideal seria termos dois projetos, 1 para cada api(Enderecos e Pessoa), já que se a mesma API irá retornar a pessoa e ela mesma pode retornar os endereços, seria melhor ela já retornar a pessoa com os endereços preenchidos. Porém, esse não é o objetivo da solução apresentada. O objetivo é mostrar como a utilização de paralelismo pode trazer grande ganho de performace para sua aplicação.
 
-Nesse contexto, para fins de simulaçao de cenário lento na aplicação, coloquei um Task.Delay para cada consulta.
-    Api pessoa 300 milisegundos
+Nesse contexto, para fins de simulaçao de um cenário lento na aplicação, coloquei um Task.Delay para cada consulta.
+##### Api Pessoa 300 milisegundos
+##### Api Endereços 500 milisegundos
 
 ```C#
         public async Task<Pessoa> GetPessoaAsync(int id)
@@ -64,7 +65,6 @@ Nesse contexto, para fins de simulaçao de cenário lento na aplicação, coloqu
         }
 ```
 
-    Api Endereços 500 milisegundos
 
 ```C#
         public async Task<IEnumerable<Endereco>> GetEnderecosAsync(int pessoaId)
