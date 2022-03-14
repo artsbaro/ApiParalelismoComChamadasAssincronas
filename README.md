@@ -2,7 +2,7 @@
 Pequeno projeto que mostra como aplicar paralelismo em processos afim de obter performance em projetos .Net 6.
 
 ## Com Paralelismo
-Utilizando paralelismo em suas chamadas a um servico que consome uma http
+Utilizando paralelismo em suas chamadas a um servico que consome uma HTTP api
 >> Ex.
 ```C#
         public async Task<Pessoa> GetPessoaAsync(int id)
